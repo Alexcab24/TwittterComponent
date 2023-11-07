@@ -1,32 +1,26 @@
 import '../src/App.css'
-import { TwitterFollowCard } from './TwitterFollowCard'
+
+
+
+import Spinner from './components/Spinner'
+import TwitterComponentApp from './components/TwitterComponentApp'
+import { useFetch } from './hooks/useFetch'
+
 
 const App = () => {
 
- 
-
+  const { api, isLoading } = useFetch(' https://randomuser.me/api/?results=3')
   return (
-    <section className='App'>
-      < TwitterFollowCard
-        userName='Alaah24'
-        name='Alex Cabral'
-      
-     
-      />
-
-      < TwitterFollowCard
-        userName='Ale.jsx'
-        name='Eduardo Cabral'
-    
-    
-      />
-
-      < TwitterFollowCard
-        userName='ElonMusk'
-        name='Elon Musk'
+    <>
+    {isLoading 
+    ?
+    <Spinner/>
+    :
+   <TwitterComponentApp api={api}/>
+    }
+ 
+    </>
    
-      />
-    </section>
   )
 }
 
